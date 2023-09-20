@@ -9,13 +9,14 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief Functions implementation to calculate array statistics
  *
- * <Add Extended Description Here>
+ * The functions are print statistics, print array, find median,
+ * find mean, find max, find min, and sort array
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Raquel Valencia
+ * @date 20-09-2023
  *
  */
 
