@@ -24,6 +24,8 @@
 
 #include <stdio.h>
 #include "stats.h"
+#include <math.h>
+#include <stdlib.h>
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -38,7 +40,77 @@ void main() {
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
-
+  printf("You inserted the array : \n");
+  print_array(SIZE, test);
+  printf("\nThe sorted array in descending order is : \n");
+  unsigned char* arr2 = sort_array(SIZE, test);
+  print_array(SIZE, arr2);
+  print_statistics(SIZE, test);
 }
 
-/* Add other Implementation File Code Here */
+/* Implementation code */
+
+void print_statistics(unsigned int size, unsigned char arr[]) {
+  printf("\nThe statics of the array are the following: \n");
+  printf("Minimum: %u\n", find_minimum(size, arr));
+  printf("Maximum: %u\n", find_maximum(size, arr));
+  printf("Mean: %u\n", find_mean(size, arr));
+  printf("Median: %u\n", find_median(size, arr));
+}
+
+void print_array(unsigned int size, unsigned char arr[]) {
+  for(unsigned int i = 0; i < size; i++) {
+    printf("%u ", arr[i]);
+  }
+}
+
+unsigned int find_mean(unsigned int size, unsigned char arr[]) {
+  unsigned int sum = 0;
+  for(unsigned int i = 0; i < size; i++) {
+    sum = sum + arr[i];
+  }
+  unsigned int mean = floor(sum / size);
+  return mean;
+}
+
+unsigned int find_median(unsigned int size, unsigned char arr[]) {
+  unsigned char* sorted_arr = sort_array(size, arr);
+  unsigned int median;
+  unsigned int half = size / 2;
+  if (size % 2 == 0) {
+    median = (sorted_arr[half] + sorted_arr[half - 1]) / 2;
+  } else {
+    median = sorted_arr[half];
+  }
+  return median;
+}
+
+
+unsigned char find_maximum(unsigned int size, unsigned char arr[]) {
+  unsigned char* arr2;
+  arr2 = sort_array(size, arr);
+  return arr2[0];
+}
+
+unsigned char find_minimum(unsigned int size, unsigned char arr[]) {
+  unsigned char* arr2;
+  arr2 = sort_array(size, arr);
+  return arr2[size - 1];
+}
+
+unsigned char* sort_array(unsigned int size, unsigned char arr[]) {
+  /* Swap algorithm */
+  unsigned char a;
+  for (unsigned int i = 0; i < size; i++) {
+    for (unsigned int j = i + 1; j < size; j++) {
+      if (arr[i] < arr[j]) {
+        a = arr[i];
+        arr[i] = arr[j];
+        arr[j] = a;
+      }
+    }
+  }
+  return arr;
+}
+
+
